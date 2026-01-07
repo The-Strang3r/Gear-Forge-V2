@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minecraft Armor Tracker</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+<button id="theme-toggle">Toggle Theme</button>
+
+<div class="container">
+    <h1>Minecraft Armor Tracker</h1>
+
+    <div class="top-bar">
+        <div class="designed-by">Designed by: Just_Sp4rk</div>
+
+        <label class="enable-thorns">
+            <input type="checkbox" id="thorns-toggle" />
+            Enable Thorns
+        </label>
+
+        <button id="toggle-view-btn">Show Tools</button>
+    </div>
+
+    <div id="save-notice"></div>
+
+    <div class="main-layout">
+        <!-- LEFT -->
+        <div class="left-col">
+            <div class="armor-box">
+                <div class="armor-grid fade-in"></div>
+                <!-- Items inserted dynamically -->
+            </div>
+
+            <button id="reset-btn">Reset</button>
+        </div>
+
+        <!-- RIGHT -->
+        <aside class="right-col">
+            <div id="xp-summary" class="xp-summary">
+                <div class="xp-title">Estimated XP Cost</div>
+
+                <div class="xp-row">
+                    <span>Estimated Levels</span>
+                    <span id="xp-total" class="xp-big">0</span>
+                </div>
+
+                <div class="xp-row saved">
+                    <span>You saved</span>
+                    <span id="xp-saved" class="xp-saved">0</span>
+                </div>
+
+                <div class="xp-mini" id="xp-note">
+                    Optimal combining vs naive order (Java 1.21.x).
+                </div>
+
+                <div class="xp-breakdown-title">Breakdown</div>
+                <div id="xp-breakdown" class="xp-breakdown">
+                    <div style="opacity:.7;">Select some enchants to see totals.</div>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>
+
+<!-- Enchant Plan Modal -->
+<div id="enchant-modal" class="modal-overlay hidden" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-header">
+            <h3 id="modal-title">Enchant Plan</h3>
+            <button id="modal-close" class="modal-close" aria-label="Close">✕</button>
+        </div>
+
+        <div id="modal-subtitle" class="modal-subtitle"></div>
+        <ol id="modal-steps" class="modal-steps"></ol>
+
+        <div class="modal-actions">
+            <button id="modal-copy" class="modal-btn">Copy</button>
+            <button id="modal-ok" class="modal-btn primary">OK</button>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="js/main.js"></script>
+
+<footer class="footer">
+    Designed By: Just_Sp4rk - Designed for Onemainworld
+</footer>
+</body>
+</html>
