@@ -1,3 +1,6 @@
+URL TO ACCESS SITE: https://the-strang3r.github.io/Gear-Forge-V2/
+
+
 # Minecraft Armor & Tool Enchant Planner
 
 A web-based planner for **Minecraft Java Edition (1.21.x+)** that helps players plan optimal enchantments for armor and tools while respecting **real anvil mechanics**, **incompatibilities**, and the **“Too Expensive!”** limit.
