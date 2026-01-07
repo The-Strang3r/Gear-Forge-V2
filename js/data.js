@@ -13,7 +13,7 @@ export const toolIcons = {
   "Netherite Hoe": "img/hoe.png",
   "Mace": "img/mace.png",
   "Trident": "img/trident.png",
-  "Bow":  "img/Bow.png",
+  "Bow": "img/bow.png",
   "Spear": "img/spear.png"
 };
 
@@ -190,3 +190,4 @@ export const toolPieces = [
 
 export const trims = ["Trim", "Spire", "Tide", "Ward", "Vex", "Wild", "Rib", "Coast", "Sentry", "Eye", "Snout", "Wayfinder"];
 export const colors = ["Color", "Emerald", "Redstone", "Lapis", "Amethyst", "Quartz", "Netherite", "Diamond", "Gold", "Iron", "Copper", "Resin"];
+
