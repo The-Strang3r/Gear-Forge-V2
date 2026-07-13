@@ -34,8 +34,6 @@
                 <div class="armor-grid fade-in"></div>
                 <!-- Items inserted dynamically -->
             </div>
-
-            <button id="reset-btn">Reset</button>
         </div>
 
         <!-- RIGHT -->
@@ -48,20 +46,89 @@
                     <span id="xp-total" class="xp-big">0</span>
                 </div>
 
+                <div class="xp-row">
+                    <span>Estimated XP Points</span>
+                    <span id="xp-points" class="xp-points">0</span>
+                </div>
+
                 <div class="xp-row saved">
                     <span>You saved</span>
                     <span id="xp-saved" class="xp-saved">0</span>
                 </div>
 
                 <div class="xp-mini" id="xp-note">
-                    Optimal combining vs naive order (Java 1.21.x).
+                    XP points are calculated from each optimized anvil operation.
                 </div>
 
-                <div class="xp-breakdown-title">Breakdown</div>
+                <button
+                        id="xp-breakdown-toggle"
+                        class="xp-breakdown-toggle"
+                        type="button"
+                        aria-expanded="true"
+                        aria-controls="xp-breakdown"
+                >
+                    <span>Breakdown</span>
+                    <span class="xp-breakdown-arrow">▾</span>
+                </button>
+
                 <div id="xp-breakdown" class="xp-breakdown">
                     <div style="opacity:.7;">Select some enchants to see totals.</div>
                 </div>
             </div>
+
+            <div id="shopping-list" class="shopping-list">
+                <div class="shopping-list-header">
+                    <button
+                            id="shopping-list-toggle"
+                            class="shopping-list-toggle"
+                            type="button"
+                            aria-expanded="true"
+                            aria-controls="shopping-list-content"
+                    >
+            <span>
+                <span class="shopping-list-title">Book Shopping List</span>
+                <span id="shopping-list-count" class="shopping-list-count">
+                    0 books
+                </span>
+            </span>
+
+                        <span class="shopping-list-arrow">▾</span>
+                    </button>
+
+                    <button
+                            id="copy-shopping-list"
+                            class="shopping-list-copy"
+                            disabled
+                    >
+                        Copy List
+                    </button>
+                </div>
+
+                <div id="shopping-list-content" class="shopping-list-content">
+                    <div id="shopping-list-items" class="shopping-list-items">
+                        <div class="shopping-list-empty">
+                            Select enchantments to build a book list.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button
+                    id="copy-share-link"
+                    class="share-build-button"
+                    type="button"
+            >
+                Copy Share Link
+            </button>
+
+            <button
+                    id="reset-btn"
+                    class="reset-under-receipt"
+                    type="button"
+            >
+                Reset
+            </button>
+
         </aside>
     </div>
 </div>
