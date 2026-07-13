@@ -1,63 +1,82 @@
-URL TO ACCESS SITE: https://the-strang3r.github.io/Gear-Forge-V2/
+# Gear Forge V2
 
+Website: https://the-strang3r.github.io/Gear-Forge-V2/
 
-# Minecraft Armor & Tool Enchant Planner
+Gear Forge V2 is a Minecraft Java enchantment planner that calculates the cheapest way to enchant armor and tools while following the game's actual anvil mechanics. It also prevents impossible enchantment combinations and warns when a setup would become "Too Expensive!".
 
-A web-based planner for **Minecraft Java Edition (1.21.x+)** that helps players plan optimal enchantments for armor and tools while respecting **real anvil mechanics**, **incompatibilities**, and the **“Too Expensive!”** limit.
+The project was built for the server, Onemainworld, but can be used for any Java Edition world.
 
-Built for practical use on survival servers like **Onemainworld**, with future-version items clearly marked.
+## Features
+
+- Supports Netherite armor
+- Supports Sword, Pickaxe, Axe, Shovel, Hoe, Bow, Trident, Mace, and Spear
+- Calculates optimal anvil order
+- Uses Java Edition anvil mechanics
+- Detects incompatible enchantments
+- Highlights conflicting enchantments in the UI
+- Warns when an enchantment setup exceeds the anvil limit
+- Saves your selections automatically
+- Light and dark mode
+- Responsive layout for desktop and mobile
+
+## Current Features
+
+### Armor
+- Armor trims
+- Trim colors
+- Full enchant support
+- Protection conflict handling
+- Thorns toggle
+
+### Tools
+- Sword
+- Pickaxe
+- Axe
+- Shovel
+- Hoe
+- Bow
+- Trident
+- Mace
+- Spear
+
+## Project Structure
+
+```
+css/
+    base.css
+    components.css
+    layout.css
+    modal.css
+    responsive.css
+
+img/
+
+js/
+    anvilMath.js
+    buttons.js
+    conflicts.js
+    data.js
+    main.js
+    modal.js
+    planner.js
+    receipt.js
+    render.js
+    reset.js
+    state.js
+    storage.js
+    theme.js
+    thorns.js
+    xp.js
+
+index.html
+```
+
+## Future Plans
+
+- Add support for new Minecraft versions as they release
+- Continue improving anvil calculations where Mojang changes mechanics
+- Add more quality-of-life features to the planner
 
 ---
 
-## ✨ Features
-
-### 🛡️ Armor & ⚒️ Tools Support
-- Netherite armor with trims, colors, and full enchant support
-- Tools including:
-  - Sword, Pickaxe, Axe, Shovel, Hoe
-  - **Bow**
-  - **Trident**
-  - **Mace**
-- **Spear** placeholder (future version support)
-
-### ⚙️ Accurate Anvil Math
-- Uses **real Java anvil rules**
-- Correct handling of:
-  - Prior work penalties
-  - Book vs item combinations
-  - Max enchant levels
-  - Treasure enchant costs
-- Enforces the **< 40 levels per operation** rule
-- Flags impossible setups with **“Too Expensive!”**
-
-### 🧠 Smart Conflict Handling
-- Mutually exclusive enchant groups (e.g. Protection types, Fortune vs Silk Touch)
-- Pairwise conflicts where applicable:
-  - Riptide ↔ Loyalty / Channeling
-  - Infinity ↔ Mending
-- Conflicting options automatically **gray out** in the UI
-
-### 📊 XP Cost Summary
-- Shows:
-  - Optimal total XP cost
-  - Naive (worst-case) cost
-  - Levels saved by optimal combining
-- Per-item breakdown
-
-### 📋 Enchant Plan Generator
-- Click **Enchant!** to see a step-by-step anvil plan
-- Copyable plan for in-game use
-
-### 🎨 UI & UX
-- Light / Dark theme toggle
-- Responsive layout
-- Armor view (2-column grid)
-- Tools view (3-column grid)
-- Persistent state via localStorage
-- Smooth transitions and animations
-
-### 🚧 Version Gating
-- Tools not yet available on the server (e.g. **Spear**) are shown as:
-  - Disabled
-  - Labeled **“Coming soon to Onemainworld!”**
-  - Excluded from all logic (XP, conflicts, planner)
+Designed by **Just_Sp4rk** for **Onemainworld**.
