@@ -1,65 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Minecraft Armor Tracker</title>
+
     <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
+
 <button id="theme-toggle">Toggle Theme</button>
 
 <div class="container">
+
     <h1>Minecraft Armor Tracker</h1>
 
-<div class="site-credit">
-    Designed by Just_Sp4rk - Built for Onemainworld
-</div>
+    <div class="site-credit">
+        Designed by Just_Sp4rk - Built for Onemainworld
+    </div>
 
-<div class="top-bar">
+    <div class="top-bar">
 
         <label class="enable-thorns">
             <input type="checkbox" id="thorns-toggle" />
             Enable Thorns
         </label>
 
-        <button id="toggle-view-btn">Show Tools</button>
+        <button id="toggle-view-btn">
+            Show Tools
+        </button>
+
     </div>
 
     <div id="save-notice"></div>
 
     <div class="main-layout">
+
         <!-- LEFT -->
         <div class="left-col">
+
             <div class="armor-box">
+
                 <div class="armor-grid fade-in"></div>
+
                 <!-- Items inserted dynamically -->
+
             </div>
+
         </div>
 
         <!-- RIGHT -->
         <aside class="right-col">
+
+            <!-- XP RECEIPT -->
+
             <div id="xp-summary" class="xp-summary">
-                <div class="xp-title">Estimated XP Cost</div>
+
+                <div class="xp-title">
+                    Estimated XP Cost
+                </div>
 
                 <div class="xp-row">
                     <span>Estimated Levels</span>
-                    <span id="xp-total" class="xp-big">0</span>
+
+                    <span
+                            id="xp-total"
+                            class="xp-big"
+                    >
+                        0
+                    </span>
                 </div>
 
                 <div class="xp-row">
                     <span>Estimated XP Points</span>
-                    <span id="xp-points" class="xp-points">0</span>
+
+                    <span
+                            id="xp-points"
+                            class="xp-points"
+                    >
+                        0
+                    </span>
                 </div>
 
                 <div class="xp-row saved">
                     <span>You saved</span>
-                    <span id="xp-saved" class="xp-saved">0</span>
+
+                    <span
+                            id="xp-saved"
+                            class="xp-saved"
+                    >
+                        0
+                    </span>
                 </div>
 
-                <div class="xp-mini" id="xp-note">
+                <div
+                        class="xp-mini"
+                        id="xp-note"
+                >
                     XP points are calculated from each optimized anvil operation.
                 </div>
 
@@ -71,16 +112,33 @@
                         aria-controls="xp-breakdown"
                 >
                     <span>Breakdown</span>
-                    <span class="xp-breakdown-arrow">▾</span>
+
+                    <span class="xp-breakdown-arrow">
+                        ▾
+                    </span>
                 </button>
 
-                <div id="xp-breakdown" class="xp-breakdown">
-                    <div style="opacity:.7;">Select some enchants to see totals.</div>
+                <div
+                        id="xp-breakdown"
+                        class="xp-breakdown"
+                >
+                    <div style="opacity:.7;">
+                        Select some enchants to see totals.
+                    </div>
                 </div>
+
             </div>
 
-            <div id="shopping-list" class="shopping-list">
+
+            <!-- BOOK SHOPPING LIST -->
+
+            <div
+                    id="shopping-list"
+                    class="shopping-list"
+            >
+
                 <div class="shopping-list-header">
+
                     <button
                             id="shopping-list-toggle"
                             class="shopping-list-toggle"
@@ -88,33 +146,114 @@
                             aria-expanded="true"
                             aria-controls="shopping-list-content"
                     >
-            <span>
-                <span class="shopping-list-title">Book Shopping List</span>
-                <span id="shopping-list-count" class="shopping-list-count">
-                    0 books
-                </span>
-            </span>
 
-                        <span class="shopping-list-arrow">▾</span>
+                        <span>
+
+                            <span class="shopping-list-title">
+                                Book Shopping List
+                            </span>
+
+                            <span
+                                    id="shopping-list-count"
+                                    class="shopping-list-count"
+                            >
+                                0 books
+                            </span>
+
+                        </span>
+
+                        <span class="shopping-list-arrow">
+                            ▾
+                        </span>
+
                     </button>
 
                     <button
                             id="copy-shopping-list"
                             class="shopping-list-copy"
+                            type="button"
                             disabled
                     >
                         Copy List
                     </button>
+
                 </div>
 
-                <div id="shopping-list-content" class="shopping-list-content">
-                    <div id="shopping-list-items" class="shopping-list-items">
+                <div
+                        id="shopping-list-content"
+                        class="shopping-list-content"
+                >
+
+                    <div
+                            id="shopping-list-items"
+                            class="shopping-list-items"
+                    >
+
                         <div class="shopping-list-empty">
                             Select enchantments to build a book list.
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
+
+
+            <!-- ONEMAINWORLD SERVER CARD -->
+
+            <div
+                    id="server-card"
+                    class="server-card"
+            >
+
+                <img
+                        src="img/OMW-PFP.png"
+                        alt="Onemainworld"
+                        class="server-logo"
+                >
+
+                <div class="server-info">
+
+                    <div class="server-name">
+                        Onemainworld
+                    </div>
+
+                    <div class="server-status-row">
+
+                        <span
+                                id="server-status-dot"
+                                class="server-status-dot"
+                        ></span>
+
+                        <span id="server-status-text">
+                            Checking...
+                        </span>
+
+                    </div>
+
+                    <div
+                            id="server-player-count"
+                            class="server-player-count"
+                    >
+                        Loading player count...
+                    </div>
+
+                </div>
+
+                <a
+                        class="server-discord-button"
+                        href="https://discord.gg/xEHT96MjHg"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                >
+                    Discord
+                </a>
+
+            </div>
+
+
+            <!-- ACTION BUTTONS -->
 
             <button
                     id="copy-share-link"
@@ -133,28 +272,81 @@
             </button>
 
         </aside>
+
     </div>
+
 </div>
 
-<!-- Enchant Plan Modal -->
-<div id="enchant-modal" class="modal-overlay hidden" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+
+<!-- ENCHANT PLAN MODAL -->
+
+<div
+        id="enchant-modal"
+        class="modal-overlay hidden"
+        aria-hidden="true"
+>
+
+    <div
+            class="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
+    >
+
         <div class="modal-header">
-            <h3 id="modal-title">Enchant Plan</h3>
-            <button id="modal-close" class="modal-close" aria-label="Close">✕</button>
+
+            <h3 id="modal-title">
+                Enchant Plan
+            </h3>
+
+            <button
+                    id="modal-close"
+                    class="modal-close"
+                    aria-label="Close"
+            >
+                ✕
+            </button>
+
         </div>
 
-        <div id="modal-subtitle" class="modal-subtitle"></div>
-        <ol id="modal-steps" class="modal-steps"></ol>
+        <div
+                id="modal-subtitle"
+                class="modal-subtitle"
+        ></div>
+
+        <ol
+                id="modal-steps"
+                class="modal-steps"
+        ></ol>
 
         <div class="modal-actions">
-            <button id="modal-copy" class="modal-btn">Copy</button>
-            <button id="modal-ok" class="modal-btn primary">OK</button>
+
+            <button
+                    id="modal-copy"
+                    class="modal-btn"
+            >
+                Copy
+            </button>
+
+            <button
+                    id="modal-ok"
+                    class="modal-btn primary"
+            >
+                OK
+            </button>
+
         </div>
+
     </div>
+
 </div>
 
-<script type="module" src="js/main.js"></script>
+
+<script
+        type="module"
+        src="js/main.js"
+></script>
 
 </body>
+
 </html>
