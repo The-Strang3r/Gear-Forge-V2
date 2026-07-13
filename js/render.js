@@ -6,6 +6,7 @@ import { toggleThorns } from "./thorns.js";
 import { updateEnchantButtons, wireEnchantButtons } from "./buttons.js";
 import { updateXpSummary } from "./xp.js";
 import { setupReceiptAutoMove } from "./receipt.js";
+import { updateShoppingList } from "./shoppingList.js";
 
 export function renderItems() {
   const grid = document.querySelector(".armor-grid");
@@ -118,6 +119,7 @@ export function renderItems() {
         isArmorView() ? saveArmor() : saveTools();
         updateEnchantButtons();
         updateXpSummary();
+        updateShoppingList();
 
         requestAnimationFrame(() => window.__updateReceiptAutoMove?.());
       });
@@ -150,6 +152,7 @@ export function renderItems() {
 
     updateEnchantButtons();
     updateXpSummary();
+    updateShoppingList();
 
     requestAnimationFrame(() => {
       grid.classList.remove("fade-out");
