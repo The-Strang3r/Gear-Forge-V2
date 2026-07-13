@@ -49,6 +49,8 @@ export const BOOK_MULT = {
   "Breach": 2,
   "Wind Burst": 2,
 
+  "Lunge": 1,
+
   "Power": 1,
   "Punch": 4,
   "Flame": 2,
@@ -92,6 +94,8 @@ export const MAX_LEVEL = {
   "Density": 5,
   "Breach": 4,
   "Wind Burst": 3,
+
+  "Lunge": 3,
 
   "Power": 5,
   "Punch": 2,
