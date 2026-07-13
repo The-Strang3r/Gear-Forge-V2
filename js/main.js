@@ -1,49 +1,194 @@
-@media (max-width: 768px) {
-  #theme-toggle {
-    position: static;
-    margin-bottom: 20px;
-    padding: 6px 12px;
-    font-size: 12px;
+import { setView, isArmorView } from "./state.js";
+import { initTheme, toggleTheme } from "./theme.js";
+import { initThornsToggle, toggleThorns } from "./thorns.js";
+import { renderItems } from "./render.js";
+import { wireModalControls } from "./modal.js";
+import { resetArmorData, showSaveNotice } from "./reset.js";
+import { saveCurrent } from "./storage.js";
+import { updateXpSummary } from "./xp.js";
+import { setupReceiptAutoMove } from "./receipt.js";
+import { initServerStatus } from "./serverStatus.js";
+
+import {
+  copyShareLink,
+  loadSharedBuildFromUrl
+} from "./share.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  const sharedBuildLoaded = loadSharedBuildFromUrl();
+
+  initTheme();
+  initServerStatus();
+
+  const toggleViewBtn =
+    document.getElementById("toggle-view-btn");
+
+  const resetBtn =
+    document.getElementById("reset-btn");
+
+  const themeBtn =
+    document.getElementById("theme-toggle");
+
+  const thornsToggle =
+    document.getElementById("thorns-toggle");
+
+  const shareButton =
+    document.getElementById("copy-share-link");
+
+  if (toggleViewBtn) {
+    toggleViewBtn.textContent = isArmorView()
+      ? "Show Tools"
+      : "Show Armor";
+
+    toggleViewBtn.addEventListener("click", () => {
+      saveCurrent();
+
+      setView(isArmorView() ? "tools" : "armor");
+
+      toggleViewBtn.textContent = isArmorView()
+        ? "Show Tools"
+        : "Show Armor";
+
+      renderItems();
+    });
   }
 
-  .armor-grid { grid-template-columns: 1fr !important; }
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      resetArmorData();
 
-  .armor-header {
-    flex-direction: column;
-    align-items: flex-start;
+      requestAnimationFrame(() => {
+        window.__updateReceiptAutoMove?.();
+      });
+    });
   }
 
-  .dropdown-group {
-    width: 100%;
-    flex-direction: column;
+  if (themeBtn) {
+    themeBtn.addEventListener("click", toggleTheme);
   }
 
-  select { width: 100%; }
-
-  .footer {
-    position: static;
-    margin-top: 20px;
-    text-align: center;
-    opacity: 0.7;
-    font-size: 10px;
+  if (shareButton) {
+    shareButton.addEventListener("click", async () => {
+      await copyShareLink();
+    });
   }
 
-  body { overflow-x: hidden; }
-}
+  const shoppingToggle =
+    document.getElementById("shopping-list-toggle");
 
-/* Small screen: receipt goes below + stretches */
-@media (max-width: 900px) {
-  .main-layout {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+  const shoppingContent =
+    document.getElementById("shopping-list-content");
+
+  if (shoppingToggle && shoppingContent) {
+    const collapsed =
+      localStorage.getItem("shoppingListCollapsed") === "true";
+
+    shoppingToggle.setAttribute(
+      "aria-expanded",
+      String(!collapsed)
+    );
+
+    shoppingContent.classList.toggle(
+      "is-collapsed",
+      collapsed
+    );
+
+    shoppingToggle.addEventListener("click", () => {
+      const isExpanded =
+        shoppingToggle.getAttribute("aria-expanded") === "true";
+
+      const shouldCollapse = isExpanded;
+
+      shoppingToggle.setAttribute(
+        "aria-expanded",
+        String(!shouldCollapse)
+      );
+
+      shoppingContent.classList.toggle(
+        "is-collapsed",
+        shouldCollapse
+      );
+
+      localStorage.setItem(
+        "shoppingListCollapsed",
+        String(shouldCollapse)
+      );
+    });
   }
 
-  .left-col { order: 1; }
-  .right-col { order: 2; }
 
-  .xp-summary {
-    position: static;
-    width: 100%;
+  const breakdownToggle =
+    document.getElementById("xp-breakdown-toggle");
+
+  const breakdown =
+    document.getElementById("xp-breakdown");
+
+  if (breakdownToggle && breakdown) {
+    const collapsed =
+      localStorage.getItem("xpBreakdownCollapsed") === "true";
+
+    breakdownToggle.setAttribute(
+      "aria-expanded",
+      String(!collapsed)
+    );
+
+    breakdown.classList.toggle(
+      "is-collapsed",
+      collapsed
+    );
+
+    breakdownToggle.addEventListener("click", () => {
+      const isExpanded =
+        breakdownToggle.getAttribute("aria-expanded") === "true";
+
+      const shouldCollapse = isExpanded;
+
+      breakdownToggle.setAttribute(
+        "aria-expanded",
+        String(!shouldCollapse)
+      );
+
+      breakdown.classList.toggle(
+        "is-collapsed",
+        shouldCollapse
+      );
+
+      localStorage.setItem(
+        "xpBreakdownCollapsed",
+        String(shouldCollapse)
+      );
+    });
   }
-}
+
+  initThornsToggle();
+
+  if (thornsToggle) {
+    thornsToggle.addEventListener("change", () => {
+      toggleThorns();
+      updateXpSummary();
+
+      requestAnimationFrame(() => {
+        window.__updateReceiptAutoMove?.();
+      });
+    });
+  }
+
+  wireModalControls();
+  renderItems();
+
+  document
+    .querySelector(".container")
+    ?.classList.add("show");
+
+  setupReceiptAutoMove();
+
+  requestAnimationFrame(() => {
+    window.__updateReceiptAutoMove?.();
+  });
+
+  if (sharedBuildLoaded) {
+    setTimeout(() => {
+      showSaveNotice("Shared build loaded!");
+    }, 300);
+  }
+});
