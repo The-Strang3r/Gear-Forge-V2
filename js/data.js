@@ -13,7 +13,7 @@ export const toolIcons = {
   "Netherite Hoe": "img/hoe.png",
   "Mace": "img/mace.png",
   "Trident": "img/trident.png",
-  "Bow":  "img/Bow.png",
+  "Bow":  "img/bow.png",
   "Spear": "img/spear.png"
 };
 
