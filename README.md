@@ -39,38 +39,6 @@ The project was built for the server, Onemainworld, but can be used for any Java
 - Mace
 - Spear
 
-## Project Structure
-
-```
-css/
-    base.css
-    components.css
-    layout.css
-    modal.css
-    responsive.css
-
-img/
-
-js/
-    anvilMath.js
-    buttons.js
-    conflicts.js
-    data.js
-    main.js
-    modal.js
-    planner.js
-    receipt.js
-    render.js
-    reset.js
-    state.js
-    storage.js
-    theme.js
-    thorns.js
-    xp.js
-
-index.html
-```
-
 ## Future Plans
 
 - Add support for new Minecraft versions as they release
