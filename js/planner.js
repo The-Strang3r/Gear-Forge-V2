@@ -30,7 +30,15 @@ export function optimalFullProcessPlan(selectedLabels, wantSteps) {
   const names = Object.keys(consolidated);
   const n = names.length;
 
-  if (n === 0) return { feasible: true, total: 0, maxOp: 0, steps: [] };
+  if (n === 0) {
+    return {
+      feasible: true,
+      total: 0,
+      maxOp: 0,
+      steps: [],
+      operationCosts: []
+    };
+  };
 
   const nameToIdx = new Map(names.map((nm, i) => [nm, i]));
   const goalMask = (1 << n) - 1;
@@ -78,17 +86,36 @@ export function optimalFullProcessPlan(selectedLabels, wantSteps) {
 
     if (item.mask === goalMask && books.length === 0) {
       const steps = [];
-      if (wantSteps) {
-        let k = cur.key;
-        while (prev.has(k)) {
-          const p = prev.get(k);
-          steps.push(p.step);
-          k = p.prevKey;
+      const operationCosts = [];
+
+      let k = cur.key;
+
+      while (prev.has(k)) {
+        const previous = prev.get(k);
+
+        operationCosts.push(previous.opCost);
+
+        if (wantSteps) {
+          steps.push(previous.step);
         }
+
+        k = previous.prevKey;
+      }
+
+      operationCosts.reverse();
+
+      if (wantSteps) {
         steps.reverse();
         steps.push(`Total levels spent: ${curCost}`);
       }
-      return { feasible: true, total: curCost, maxOp: bestMaxOp.get(cur.key) ?? 0, steps };
+
+      return {
+        feasible: true,
+        total: curCost,
+        maxOp: bestMaxOp.get(cur.key) ?? 0,
+        steps,
+        operationCosts
+      };
     }
 
     // book + book -> book
@@ -129,9 +156,10 @@ export function optimalFullProcessPlan(selectedLabels, wantSteps) {
           bestMaxOp.set(nextKey, nextMax);
           payload.set(nextKey, { item, books: newBooks });
           pq.push({ key: nextKey, cost: nextCost });
-          if (wantSteps) prev.set(nextKey, {
+          prev.set(nextKey, {
             prevKey: cur.key,
-            step: `Combine (${A.label}) + (${B.label}) → Book (cost ${opCost})`,
+            opCost,
+            step: `Apply (${B.label}) → Item (cost ${opCost})`
           });
         }
       }
@@ -165,14 +193,24 @@ export function optimalFullProcessPlan(selectedLabels, wantSteps) {
       const nextMax = Math.max(bestMaxOp.get(cur.key) ?? 0, opCost);
 
       const old = dist.get(nextKey);
+
       if (old === undefined || nextCost < old) {
         dist.set(nextKey, nextCost);
         bestMaxOp.set(nextKey, nextMax);
-        payload.set(nextKey, { item: nextItem, books: newBooks });
-        pq.push({ key: nextKey, cost: nextCost });
-        if (wantSteps) prev.set(nextKey, {
+        payload.set(nextKey, {
+          item: nextItem,
+          books: newBooks
+        });
+
+        pq.push({
+          key: nextKey,
+          cost: nextCost
+        });
+
+        prev.set(nextKey, {
           prevKey: cur.key,
-          step: `Apply (${B.label}) → Item (cost ${opCost})`,
+          opCost,
+          step: `Apply (${B.label}) → Item (cost ${opCost})`
         });
       }
     }
@@ -182,7 +220,10 @@ export function optimalFullProcessPlan(selectedLabels, wantSteps) {
     feasible: false,
     total: Infinity,
     maxOp: Infinity,
-    steps: wantSteps ? ["No valid <40-per-step anvil sequence found."] : [],
+    steps: wantSteps
+      ? ["No valid <40-per-step anvil sequence found."]
+      : [],
+    operationCosts: []
   };
 }
 
