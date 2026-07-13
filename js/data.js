@@ -184,7 +184,18 @@ export const toolPieces = [
     },
       {
         name: "Spear",
-        comingSoon: true
+        enchantments: [
+          { label: "Sharpness V", group: "spear-damage" },
+          { label: "Smite V", group: "spear-damage" },
+          { label: "Bane of Arthropods V", group: "spear-damage" },
+
+          "Lunge III",
+          "Unbreaking III",
+          "Mending",
+          "Looting III",
+          "Fire Aspect II",
+          "Knockback II"
+        ]
       }
 ];
 
