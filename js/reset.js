@@ -2,6 +2,7 @@ import { isArmorView } from "./state.js";
 import { toggleThorns } from "./thorns.js";
 import { updateEnchantButtons } from "./buttons.js";
 import { updateXpSummary } from "./xp.js";
+import { updateShoppingList } from "./shoppingList.js";
 
 export function resetArmorData() {
   document.querySelectorAll("select").forEach(select => (select.selectedIndex = 0));
@@ -22,6 +23,7 @@ export function resetArmorData() {
 
   updateEnchantButtons();
   updateXpSummary();
+  updateShoppingList();
 
   const btn = document.getElementById("reset-btn");
   btn.classList.add("flash");
