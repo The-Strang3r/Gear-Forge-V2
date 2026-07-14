@@ -159,7 +159,7 @@ export function optimalFullProcessPlan(selectedLabels, wantSteps) {
           prev.set(nextKey, {
             prevKey: cur.key,
             opCost,
-            step: `Apply (${B.label}) → Item (cost ${opCost})`
+            step: `Combine (${A.label}) + (${B.label}) → Book (cost ${opCost})`
           });
         }
       }
